@@ -9,9 +9,23 @@ public class Player : MonoBehaviour
     private int currentHP;
     public int maxMP = 50;
     private int currentMP;
+    public int maxOnslaugth = 100;
+    private int currentOnslaugth;
 
     public Health healthBar;
     public Mana manaBar;
+    public Onslaugth onslaugthBar;
+
+
+    private float onslaugthTimer = 0.0f;
+    public float onslaugthPeriod = 1f;
+    private float hpTimer = 0.0f;
+    public float hpPeriod = 2f;
+    private float mpTimer = 0.0f;
+    public float mpPeriod = 4f;
+
+
+
 
     /*void Awake()
 	{
@@ -25,8 +39,10 @@ public class Player : MonoBehaviour
         
         currentHP = maxHP;
         currentMP = maxMP;
-        healthBar.SetMaxHealth(currentHP);
-        manaBar.SetMaxMana(currentMP);
+        currentOnslaugth = 0;
+        healthBar.SetMaxHealth(maxHP);
+        manaBar.SetMaxMana(maxMP);
+        onslaugthBar.SetMaxOnslaugth(maxOnslaugth);
 
     }
 
@@ -54,30 +70,86 @@ public class Player : MonoBehaviour
             Debug.Log("Manapool was recovered :(");
             ManaRecovering(5);
         }
+        else if (Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            Debug.Log("Onslaugth was raised :)");
+            RageUp(10);
+        }
+        /*else if (Input.GetKeyDown(KeyCode.Keypad6))
+        {
+            Debug.Log("Onslaugth was decreased :(");
+            RageDown(5);
+        }*/
+        onslaugthTimer += Time.deltaTime;
+        hpTimer += Time.deltaTime;
+        mpTimer += Time.deltaTime;
+
+        if (onslaugthTimer >= onslaugthPeriod)
+        {
+            onslaugthTimer = 0.0f;
+            RageDown(1);   // <============= Prob. parameter
+        }
+        if (hpTimer >= hpPeriod)
+        {
+            hpTimer = 0.0f;
+            Healing(1);   // <============= Prob. parameter
+        }
+        if (mpTimer >= mpPeriod)
+        {
+            mpTimer = 0.0f;
+            ManaRecovering(1);   // <============= Prob. parameter
+        }
+    }
+
+    private int calculatePoints(int current, int max)
+	{
+        if (current <= 0)
+        {
+            current = 0;
+        }
+        else if (current >= max)
+        {
+            current = max;
+        }
+        return current;
     }
 
     void TakeDamage(int damage)
 	{
-        currentHP -= damage;
+
+        currentHP = calculatePoints(currentHP-damage, maxHP);
         healthBar.SetHealth(currentHP);
 
     }
 
     void CastSpell(int manacost)
 	{
-        currentMP -= manacost;
+        currentMP = calculatePoints(currentMP - manacost, maxMP);
         manaBar.SetMana(currentMP);
     }
 
     void Healing(int heals)
     {
-        currentHP += heals;
+        currentHP = calculatePoints(currentHP + heals, maxHP);
         healthBar.SetHealth(currentHP);
     }
 
     void ManaRecovering(int mana)
     {
-        currentMP += mana;
+        currentMP = calculatePoints(currentMP + mana, maxMP);
         manaBar.SetMana(currentMP);
+    }
+
+    void RageUp (int onslaugth)
+	{
+        currentOnslaugth = calculatePoints(currentOnslaugth + onslaugth, maxOnslaugth); 
+        onslaugthBar.SetOnslaugth(currentOnslaugth);
+    }
+
+    void RageDown(int onslaugth)
+    {
+        currentOnslaugth = calculatePoints(currentOnslaugth - onslaugth, maxOnslaugth);
+        onslaugthBar.SetOnslaugth(currentOnslaugth);
+
     }
 }

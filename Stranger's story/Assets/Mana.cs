@@ -20,6 +20,7 @@ public class Mana : MonoBehaviour
 
 	public void SetMana(int mana)
 	{
+		
 		slider.value = mana;
 		manaText.text = mana.ToString();
 		fill.color = gradient.Evaluate(slider.normalizedValue);
