@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public int maxHP = 100;
-    public int currentHP;
+    private int currentHP;
     public int maxMP = 50;
-    public int currentMP;
+    private int currentMP;
 
     public Health healthBar;
     public Mana manaBar;
