@@ -6,12 +6,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private int moveSpeed = 10;
-    [SerializeField] private float gravity = 2;
+    [SerializeField] private float gravity = 0.7f;
     [SerializeField] private float jumpForce = 2f;
 
+    [SerializeField] private Transform camera;
     private CharacterController characterController;
     private Vector3 moveDirection;
-
+    private bool groundedPlayer;
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -19,27 +20,37 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var horizontal = Input.GetAxis("Horizontal");
-        var vertical = Input.GetAxis("Vertical");
+        groundedPlayer = characterController.isGrounded;
+
+        if (groundedPlayer && moveDirection.y < 0)
+        {
+            moveDirection.y = 0f;
+        }
+        
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
 
         var inputDirection = new Vector3(horizontal, 0, vertical).normalized;
 
-        var transformDirection = transform.TransformDirection(inputDirection);
+        if (inputDirection.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + camera.eulerAngles.y;
+        
+            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
 
-        var flatMovement = moveSpeed * Time.deltaTime * transformDirection;
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-        moveDirection = new Vector3(flatMovement.x, moveDirection.y, flatMovement.z);
+            characterController.Move(moveDir * (moveSpeed * Time.deltaTime));
+        }
 
-        if (PlayerJumped)
-            moveDirection.y = jumpForce;
-        else if (characterController.isGrounded)
-            moveDirection.y = 0f;
-        else
-            moveDirection.y -= gravity * Time.deltaTime;
+        if (Input.GetKey(KeyCode.Space) && groundedPlayer)
+        {
+            moveDirection.y = Mathf.Sqrt(jumpForce * -3.0f * gravity);
+        }
 
-        characterController.Move(moveDirection);
+        moveDirection.y += gravity * Time.deltaTime;
+        characterController.Move(moveDirection * Time.deltaTime);
+
     }
-
-    private bool PlayerJumped => characterController.isGrounded && Input.GetKey(KeyCode.Space);
-   
+    
 }
