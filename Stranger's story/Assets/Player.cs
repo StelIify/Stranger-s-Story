@@ -25,6 +25,12 @@ public class Player : MonoBehaviour
     public float mpPeriod = 4f;
 
 
+    /*public delegate void OnFocusChanged(Interactable newFocus);
+    public OnFocusChanged onFocusChangedCallback;*/
+
+    public Interactable focus;	// Our current focus: Item, Enemy etc.
+
+    
 
 
     /*void Awake()
@@ -99,7 +105,12 @@ public class Player : MonoBehaviour
             mpTimer = 0.0f;
             ManaRecovering(1);   // <============= Prob. parameter
         }
+
+
+        
     }
+
+
 
     private int calculatePoints(int current, int max)
 	{
