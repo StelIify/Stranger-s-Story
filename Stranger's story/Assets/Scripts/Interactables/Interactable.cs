@@ -23,14 +23,13 @@ public class Interactable : MonoBehaviour
 	{
 		
 		// If we haven't already interacted and the player is close enough
-		if (!hasInteracted && isInRange)
+		if (isInRange)
 		{
 			//Intaract with chest
 			if (Input.GetKeyDown(KeyCode.Keypad9))
 			{
 				Debug.Log("Interacring with object :)");
 				// Interact with the object
-				hasInteracted = true;
 				Interact();
 			}
 
