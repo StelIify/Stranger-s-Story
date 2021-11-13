@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     /*public delegate void OnFocusChanged(Interactable newFocus);
     public OnFocusChanged onFocusChangedCallback;*/
 
-    public Interactable focus;	// Our current focus: Item, Enemy etc.
+    //public Interactable focus;	// Our current focus: Item, Enemy etc.
 
     
 

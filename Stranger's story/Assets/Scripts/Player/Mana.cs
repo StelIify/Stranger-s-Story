@@ -14,7 +14,7 @@ public class Mana : MonoBehaviour
 	{
 		slider.maxValue = mana;
 		slider.value = mana;
-		manaText.text = mana.ToString();
+		manaText.text = slider.value.ToString();
 		fill.color = gradient.Evaluate(1f);
 	}
 

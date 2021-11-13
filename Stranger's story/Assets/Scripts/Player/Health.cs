@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
 	{
 		slider.maxValue = health;
 		slider.value = health;
-		healthText.text =  health.ToString();
+		healthText.text =  slider.value.ToString();
 		fill.color = gradient.Evaluate(1f);
 	}
 

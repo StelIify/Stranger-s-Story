@@ -11,21 +11,36 @@ public class InventoryUI : MonoBehaviour
 	public Transform itemsParent;   // The parent object of all the items
 
 	Inventory inventory;    // Our current inventory
+	GameStatus gameStatus;
 
 	void Start()
 	{
 		inventoryUI.SetActive(false);
-		inventory = Inventory.instance;
-		inventory.onItemChangedCallback += UpdateUI;
+		gameStatus = GameStatus.instance;
 	}
 
 	// Check to see if we should open/close the inventory
 	void Update()
 	{
-		if (Input.GetButtonDown("Inventory"))
+		
+		if (Input.GetButtonDown("Inventory") && !gameStatus.IsInBattle && !gameStatus.IsPickup)
 		{
-			inventoryUI.SetActive(!inventoryUI.activeSelf);
-			UpdateUI();
+			if(!gameStatus.GamePause){
+				//set statuses
+				gameStatus.IsInInventory = true;
+				gameStatus.PauseGame();
+				//set UI active
+				inventoryUI.SetActive(true);
+				//UpdateUI();
+			}
+			else if(gameStatus.GamePause && inventoryUI.activeSelf){
+				//set statuses
+				gameStatus.IsInInventory = false;
+				gameStatus.ResumeGame();
+				//set UI active
+				inventoryUI.SetActive(false);
+				//UpdateUI();
+			}
 		}
 	}
 
@@ -33,7 +48,8 @@ public class InventoryUI : MonoBehaviour
 	//		- Adding items
 	//		- Clearing empty slots
 	// This is called using a delegate on the Inventory.
-	public void UpdateUI()
+
+	/*public void UpdateUI()
 	{
 		InventorySlot[] slots = GetComponentsInChildren<InventorySlot>();
 
@@ -48,6 +64,6 @@ public class InventoryUI : MonoBehaviour
 				slots[i].ClearSlot();
 			}
 		}
-	}
+	}*/
 
 }

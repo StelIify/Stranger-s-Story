@@ -34,11 +34,11 @@ public class Inventory : MonoBehaviour
 				Debug.Log("Not enough room.");
 				return;
 			}
-
+			Debug.Log("Item added");
 			items.Add(item);
 
-			if (onItemChangedCallback != null)
-				onItemChangedCallback.Invoke();
+			//if (onItemChangedCallback != null)
+			//	onItemChangedCallback.Invoke();
 		}
 	}
 
@@ -47,8 +47,8 @@ public class Inventory : MonoBehaviour
 	{
 		items.Remove(item);
 
-		if (onItemChangedCallback != null)
-			onItemChangedCallback.Invoke();
+		//if (onItemChangedCallback != null)
+		//	onItemChangedCallback.Invoke();
 	}
 
 }

@@ -14,7 +14,7 @@ public class Onslaugth : MonoBehaviour
 	{
 		slider.maxValue = onslaugth;
 		slider.value = 0;
-		onslaugthText.text = onslaugth.ToString();
+		onslaugthText.text = slider.value.ToString();
 		fill.color = gradient.Evaluate(1f);
 	}
 
