@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class PlayerStats : MonoBehaviour, IDamagable
 {
     public int maxHP = 100;
     private int currentHP;
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     /*public delegate void OnFocusChanged(Interactable newFocus);
     public OnFocusChanged onFocusChangedCallback;*/
 
-    //public Interactable focus;	// Our current focus: Item, Enemy etc.
+    public Interactable focus;	// Our current focus: Item, Enemy etc.
 
     
 
@@ -110,8 +110,7 @@ public class Player : MonoBehaviour
         
     }
 
-
-
+    
     private int calculatePoints(int current, int max)
 	{
         if (current <= 0)
@@ -125,12 +124,10 @@ public class Player : MonoBehaviour
         return current;
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
 	{
-
         currentHP = calculatePoints(currentHP-damage, maxHP);
         healthBar.SetHealth(currentHP);
-
     }
 
     void CastSpell(int manacost)
