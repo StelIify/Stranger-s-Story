@@ -11,7 +11,9 @@ public class Inventory : MonoBehaviour
 
 	void Awake()
 	{
-		instance = this;
+			instance = this;	
+
+			DontDestroyOnLoad(this.gameObject);
 	}
 
 	#endregion

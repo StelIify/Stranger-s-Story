@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Spear
   m_EditorClassIdentifier: 
   name: Spear
-  icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: 7250044204fe1ee459fac663e7cdb93a, type: 3}
   showInInventory: 1

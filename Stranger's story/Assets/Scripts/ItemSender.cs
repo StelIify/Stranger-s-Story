@@ -12,6 +12,8 @@ public class ItemSender : MonoBehaviour
 	void Awake()
 	{
 		instance = this;
+
+        DontDestroyOnLoad(this.gameObject);
 	}
 
 	#endregion
