@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4174013568725514344}
   - component: {fileID: 7373508092365545599}
+  - component: {fileID: 3804858336498206549}
+  - component: {fileID: 1617690201478402256}
+  - component: {fileID: 3401071922368668887}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -50,6 +53,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d220fc7ec0541664694e82f385f1f472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  removeButton: {fileID: 0}
+--- !u!114 &3804858336498206549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662311695938168494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef87f776f196e544973c149bca04b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tabGroup: {fileID: 0}
+  background: {fileID: 5025238415102714656}
+--- !u!222 &1617690201478402256
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662311695938168494}
+  m_CullTransparentMesh: 1
+--- !u!114 &3401071922368668887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662311695938168494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.02264148, g: 0.4613388, b: 1, a: 0.80784315}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3154149722481430498
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,9 +310,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7373508092365545599}
-        m_TargetAssemblyTypeName: InventorySlot, Assembly-CSharp
-        m_MethodName: SaveAllStates
+      - m_Target: {fileID: 3804858336498206549}
+        m_TargetAssemblyTypeName: TabButton, Assembly-CSharp
+        m_MethodName: OnPointerClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

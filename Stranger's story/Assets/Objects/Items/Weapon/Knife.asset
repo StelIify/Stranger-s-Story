@@ -9,9 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99cef628b0e622b46bebd6591eecb34f, type: 3}
+  m_Script: {fileID: 11500000, guid: 21411b097203ba04595d43457689fa80, type: 3}
   m_Name: Knife
   m_EditorClassIdentifier: 
   name: Knife
-  icon: {fileID: 21300000, guid: 86add05857f650b42a52e52de2d6dc3b, type: 3}
+  icon: {fileID: 21300000, guid: db49433d40e53614492908d3cb323f14, type: 3}
   showInInventory: 1
+  strength: 15
+  inteligent: 14
+  dexterity: 6
+  rare: 2
+  graded: 0
+  materialType: 3

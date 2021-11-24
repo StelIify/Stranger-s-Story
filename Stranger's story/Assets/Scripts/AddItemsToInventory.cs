@@ -27,7 +27,7 @@ public class AddItemsToInventory : MonoBehaviour
 
     public void SaveItemToInventory(){
         Debug.Log("Try to add item to inventory");
-        inventory.Add(item);
+        item.addToInventory();
         itemSender.RemoveItems();
         Destroy(transform.gameObject);
     }

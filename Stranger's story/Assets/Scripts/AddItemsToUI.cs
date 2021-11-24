@@ -9,6 +9,7 @@ public class AddItemsToUI : MonoBehaviour
     ItemSender itemSender;
     public GameObject buttonTemplate;
     
+    //public List<Item> itemList;
     
 
     // Start is called before the first frame update
@@ -44,6 +45,8 @@ public class AddItemsToUI : MonoBehaviour
         //Destroy(buttonTemplate);
     }
 
-    
+    public void openMenu(){
+        
+    }
 
 }

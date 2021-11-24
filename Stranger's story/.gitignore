@@ -9,6 +9,11 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/[Aa]ssets/Scenes/
+/[Aa]ssets/Characters/
+/[Aa]ssets/Animations/
+/[Aa]ssets/Objects/
+/[Aa]ssets/Kevin Iglesias/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
