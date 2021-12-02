@@ -16,7 +16,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if(player != null)
         {
-            player.TakeDamage(damage);
+            player.playerStatus.TakeDamage(damage);
             Debug.Log("Bang Bang");
         }
     }

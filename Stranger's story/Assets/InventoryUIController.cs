@@ -42,8 +42,11 @@ public class InventoryUIController : MonoBehaviour
     }
 
     public void addLayer(GameObject layer){
-        layersList.Add(layer);
-        currentObject = layer;
+        if (!layersList.Contains(layer)){
+            layersList.Add(layer);
+            currentObject = layer;
+        }
+        
     }
 
     public void removeLayer(){

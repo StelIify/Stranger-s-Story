@@ -142,12 +142,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1237836110552544868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c44527674b492c1488ba5c7d93f3a9ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 26b6d57f4e9c84346ab7afa8a4b96199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  gravity: 0.5
-  jumpForce: 0.2
+  moveSpeed: 10
+  gravity: 0.7
+  jumpForce: 2
   camera: {fileID: 0}
   animator: {fileID: 4631733188846071980}
 --- !u!114 &1237836110552544867

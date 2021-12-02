@@ -21,50 +21,53 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerIsGrounded = characterController.isGrounded;
+        if (!GameStatus.instance.GamePause){
+            playerIsGrounded = characterController.isGrounded;
         
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
 
-        var inputDirection = new Vector3(horizontal, 0, vertical).normalized;
-        
-        bool hasHorizontalInput = !Mathf.Approximately(horizontal, 0f);
-
-        bool hasVerticalInput = !Mathf.Approximately(vertical, 0f);
-
-        bool isWalking = hasHorizontalInput || hasVerticalInput;
-        
-        animator.SetBool("IsMoving", isWalking);
-
-        
-        if (inputDirection.magnitude >= 0.1f)
-        {
-            float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + camera.eulerAngles.y;
-        
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-            characterController.Move(moveDir.normalized * (moveSpeed * Time.deltaTime));
-        }
-
-        if (Input.GetKey(KeyCode.Space) && playerIsGrounded)
-        {
-            moveDirection.y = jumpForce;
-            animator.SetBool("IsJumping", true);
-        }
-        else if (characterController.isGrounded)
-        {
-            moveDirection.y = 0f;
-            animator.SetBool("IsJumping", false);
-        }
+            var inputDirection = new Vector3(horizontal, 0, vertical).normalized;
             
-        
-        else
-            moveDirection.y -= gravity * Time.deltaTime;
+            bool hasHorizontalInput = !Mathf.Approximately(horizontal, 0f);
 
-        characterController.Move(moveDirection);
-        
+            bool hasVerticalInput = !Mathf.Approximately(vertical, 0f);
+
+            bool isWalking = hasHorizontalInput || hasVerticalInput;
+            
+            animator.SetBool("IsMoving", isWalking);
+
+            
+            if (inputDirection.magnitude >= 0.1f)
+            {
+                float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + camera.eulerAngles.y;
+            
+                transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+
+                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
+                characterController.Move(moveDir.normalized * (moveSpeed * Time.deltaTime));
+            }
+
+            if (Input.GetKey(KeyCode.Space) && playerIsGrounded)
+            {
+                moveDirection.y = jumpForce;
+                animator.SetBool("IsJumping", true);
+            }
+            else if (characterController.isGrounded)
+            {
+                moveDirection.y = 0f;
+                animator.SetBool("IsJumping", false);
+            }
+                
+            
+            else
+                moveDirection.y -= gravity * Time.deltaTime;
+
+            characterController.Move(moveDirection);
+     
+        }
+           
     }
     
 }
